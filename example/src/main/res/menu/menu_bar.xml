@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="触摸滑动Tab时的动画"
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_slide_glue"
+                    android:checked="true"
+                    android:title="GLUE" />
+                <item
+                    android:id="@+id/menu_slide_half_glue"
+                    android:title="HALF_GLUE" />
+                <item
+                    android:id="@+id/menu_slide_none"
+                    android:title="NONE" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:title="点击Tab时的动画"
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_click_glue"
+                    android:checked="true"
+                    android:title="GLUE" />
+                <item
+                    android:id="@+id/menu_click_half_glue"
+                    android:title="HALF_GLUE" />
+                <item
+                    android:id="@+id/menu_click_none"
+                    android:title="NONE" />
+            </group>
+        </menu>
+    </item>
+</menu>
