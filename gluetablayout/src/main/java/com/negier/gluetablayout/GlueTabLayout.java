@@ -1154,7 +1154,7 @@ public class GlueTabLayout extends HorizontalScrollView {
 
     //add
 
-    private float widthPercent;
+    private float widthPercent = 1;
 
     /**
      * 设置TabLayout下划线指示器的宽度
