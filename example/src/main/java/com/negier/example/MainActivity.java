@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setCornerRadius(dp2px(2));
         mGlueTabLayout.setSelectedTabIndicator(gradientDrawable);
-        //GlueTabLayout 设置点击圆形动画
+        //GlueTabLayout 设置点击动画为水波纹扩散效果
         mGlueTabLayout.setUnboundedRipple(true);
-        //GlueTabLayout 减少下划线指示器的宽度（减掉自身宽度的一半）
-        mGlueTabLayout.reduceTabIndicatorWidth(0.5f);
+        //GlueTabLayout 设置下划线指示器的宽度为原来的一半
+        mGlueTabLayout.setTabIndicatorWidth(0.5f);
 
         mGlueTabLayout.setupWithViewPager(mViewPager);
 

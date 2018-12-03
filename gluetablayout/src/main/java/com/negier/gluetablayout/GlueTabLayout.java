@@ -1154,15 +1154,18 @@ public class GlueTabLayout extends HorizontalScrollView {
 
     //add
 
-    private float reducePercent;
+    private float widthPercent;
 
     /**
-     * 宽度减少掉原来的多少
+     * 设置TabLayout下划线指示器的宽度
      *
-     * @param selfPercent 值（0到1）:0不减少，1减完（如果为1会导致看不见下划线指示器或其它异常情况，建议小于1）
+     * @param f 0f到1f，表示宽度设置为原宽度的多少，比如，0.5f就表示宽度设置为原宽度的一半
      */
-    public void reduceTabIndicatorWidth(float selfPercent) {
-        reducePercent = selfPercent;
+    public void setTabIndicatorWidth(float f) {
+        if (f < 0 || f > 1) {
+            throw new IllegalArgumentException("Please check the parameters you passed in GlueTabLayout.setTabIndicatorWidth(float f)");
+        }
+        widthPercent = f;
     }
 
     public enum AnimType {
@@ -1171,12 +1174,21 @@ public class GlueTabLayout extends HorizontalScrollView {
         NONE,
     }
 
-    private AnimType slidingAnimType=AnimType.GLUE, clickAnimType = AnimType.GLUE;
+    private AnimType slidingAnimType = AnimType.GLUE, clickAnimType = AnimType.GLUE;
 
+
+    /**
+     * 滑动的时候下划线指示器的动画
+     * @param animType
+     */
     public void setSlidingIndicatorAnimType(AnimType animType) {
         slidingAnimType = animType;
     }
 
+    /**
+     * 点击的时候下划线指示器的动画
+     * @param animType
+     */
     public void setClickIndicatorAnimType(AnimType animType) {
         clickAnimType = animType;
     }
@@ -1377,9 +1389,7 @@ public class GlueTabLayout extends HorizontalScrollView {
         void setIndicatorPosition(int left, int right) {
 
             if (left != this.indicatorLeft || right != this.indicatorRight) {
-                if (reducePercent != 0) {
-                    reduceWidth = (int) ((right - left) * reducePercent / 2);
-                }
+                reduceWidth = (int) ((right - left) * (1 - widthPercent) / 2);
                 this.indicatorLeft = left + reduceWidth;
                 this.indicatorRight = right - reduceWidth;
                 ViewCompat.postInvalidateOnAnimation(this);
@@ -1390,7 +1400,7 @@ public class GlueTabLayout extends HorizontalScrollView {
         void animateIndicatorToPosition(final int position, int duration) {
 
             //两次都选择相同的位置，那么不执行动画。并且此举解决我的点击动画可能不好看的情况。
-            if (selectedPosition==position){
+            if (selectedPosition == position) {
                 return;
             }
 
